@@ -1,0 +1,67 @@
+body, html
+{
+	margin: 0;
+	padding: 0;	
+}
+
+body
+{
+	background: url("../images/bg.png");
+}
+
+.header
+{
+	height: 340px;
+	background: #6CFAF4;
+	background-size: 100%;
+	background-image: url("../images/headerbg.jpg");
+	border-bottom: 1px solid black;
+	background-position: 1% 90.5%;
+}
+
+.header h1
+{
+	padding-top: 145px;
+	width: 940px;
+	margin: auto auto;
+	font-size: 70pt;
+	color: #757575;
+}
+.container
+{
+	box-shadow: 0px 10px 10px 10px;
+	min-height: 500px;
+	background: #EFF2F3;
+}
+
+.post
+{
+	padding: 20px;
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 60px;
+}
+.post .article-meta
+{
+	
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+}
+
+.logged-in-box
+{
+	margin-top: 20px;
+	padding: 20px;
+	padding-left: 0px;
+}
+
+
+
+label#login-label-password, label#login-label-username
+{
+	width: 62px;
+}
+
+#login-control-username,#login-control-password,#login-control-button
+{
+	margin-left: 90px;
+}

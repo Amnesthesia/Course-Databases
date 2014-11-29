@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- This rule will be used for validating prices as numeric values -->
+<xs:simpleType name="prisfacet">
+	<xs:restriction base="xs:integer">
+		<xs:pattern value="[0-9]+"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<!-- We specify Varenummer here and reference it in two places further down. -->
+<!-- We'll make sure it's also unique in Produkter. -->
+<xs:element name="Varenummer" type="xs:string" />
+
+	<xs:element name="Butikkdata">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Produkter">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Produkt" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="Varenummer" />
+										<xs:element name="Navn" type="xs:string" />
+										<xs:element name="Pris">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="prisfacet"> 
+														<xs:attribute name="myntenhet" use="required">
+															<xs:simpleType>
+        														<xs:restriction base="xs:string">
+            														<xs:pattern value="[A-Z][A-Z][A-Z]"/>
+        														</xs:restriction>
+    														</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>	
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DetaljInfo" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="uniqueVarenummer">
+		  				<xs:selector xpath="./Produkt"/>
+		  				<xs:field xpath="Varenummer"/>
+	 				</xs:unique>	
+				</xs:element>
+				
+				<xs:element name="Kunder">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Kunde" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Fornavn" type="xs:string" />
+										<xs:element name="Etternavn" type="xs:string" />
+										<xs:element name="Epost">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+		      										<xs:pattern value="[^@]+@[^@.]+(\.[^@.]+)+"/>
+		    									</xs:restriction>
+		    								</xs:simpleType>
+	    								</xs:element>	
+										<xs:element name="Postnummer">
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+		      										<xs:pattern value="[0-9][0-9][0-9][0-9]"/>
+		    									</xs:restriction>
+	    									</xs:simpleType>
+										</xs:element>
+										<xs:element name="Kjopshistorie" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Bestilling">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Dato" type="xs:date" />
+																<xs:element name="Produktbestilling" minOccurs="1" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element ref="Varenummer" />
+																			<xs:element name="Antall" type="xs:positiveInteger" />
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="dato" type="xs:date" use="required" />
+			<xs:attribute name="xsi" />
+			<xs:attribute name="noNamespaceSchemaLocation" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

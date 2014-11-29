@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Produktkatalog SYSTEM "Produktkatalog.dtd">
+<Produktkatalog>
+<Produsenter>
+<Produsent id="Kingston">
+<Navn>Kingston Technology</Navn>
+</Produsent>
+</Produsenter>
+<Produkter>
+<ProduktGruppe>
+<Navn>Minnekort</Navn>
+<Produkt produsentId="Kingston">
+<Kode>605210</Kode>
+<Navn>Kingston microSDHC Card 4GB, Class4</Navn>
+<Beskrivelse language="no">
+Driftstemperatur -25-85 C
+</Beskrivelse>
+</Produkt>
+<Produkt produsentId="Kingston">
+<Kode>362738</Kode>
+<Navn>Kingston microSDHC Card 8GB, Class4</Navn>
+<Beskrivelse language="no">
+Driftstemperatur -25-85 C
+</Beskrivelse>
+</Produkt>
+<Produkt produsentId="Kingston">
+<Kode>605211</Kode>
+<Navn>Kingston microSDHC Card 16GB, Class4</Navn>
+<Beskrivelse language="no">
+Driftstemperatur -25-85 C
+</Beskrivelse>
+</Produkt>
+</ProduktGruppe>
+</Produkter>
+</Produktkatalog>

@@ -1,0 +1,22 @@
+<!ELEMENT Butikkdata (Produkter?, Kunder?) >
+<!ATTLIST Butikkdata dato CDATA #REQUIRED >
+<!ATTLIST Butikkdata xmlns:xsi CDATA #IMPLIED >
+<!ATTLIST Butikkdata xsi:noNamespaceSchemaLocation CDATA #IMPLIED >
+<!ELEMENT Produkter (Produkt+) >
+<!ELEMENT Produkt (Varenummer, Navn, Pris, DetaljInfo*) >
+<!ELEMENT Varenummer (#PCDATA) >
+<!ELEMENT Navn (#PCDATA) >
+<!ELEMENT Pris (#PCDATA) >
+<!ATTLIST Pris myntenhet CDATA #REQUIRED >
+<!ELEMENT DetaljInfo (#PCDATA) >
+<!ELEMENT Kunder (Kunde+) >
+<!ELEMENT Kunde (Fornavn, Etternavn, Epost, Postnummer, Kjopshistorie?) >
+<!ELEMENT Fornavn (#PCDATA) >
+<!ELEMENT Etternavn (#PCDATA) >
+<!ELEMENT Epost (#PCDATA) >
+<!ELEMENT Postnummer (#PCDATA) >
+<!ELEMENT Kjopshistorie (Bestilling+) >
+<!ELEMENT Bestilling (Dato, Produktbestilling+) >
+<!ELEMENT Dato (#PCDATA) >
+<!ELEMENT Produktbestilling (Varenummer, Antall) >
+<!ELEMENT Antall (#PCDATA) >

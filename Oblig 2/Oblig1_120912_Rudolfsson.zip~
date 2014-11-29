@@ -1,0 +1,45 @@
+a) SELECT DISTINCT fylkeNavn FROM fylker ORDER BY fylkeNavn ASC;
+
+b) SELECT DISTINCT postnummer FROM Kunde ORDER BY postnummer ASC;
+
+c) SELECT varenummer, navn, pris/8.05 as EUR FROM Produkt;
+
+d) SELECT count(*) FROM Produkt WHERE pris%10 < 9;
+
+e) SELECT kundeID, dato, varenummer, antall FROM Ordre WHERE dato LIKE "____-02-__" AND antall > 5;
+
+f) SELECT poststedNavn FROM poststed WHERE poststedNavn LIKE "%dal";
+
+g) SELECT fornavn, etternavn, ePost, postnummer FROM Kunde WHERE etternavn IN ("Persen", "Person", "Pettersen", "Petterson") ORDER BY etternavn, fornavn;
+
+h) SELECT count(*) FROM Kunde WHERE NULLIF(ePost, '') IS NULL;
+
+i) SELECT DISTINCT varenummer FROM Ordre WHERE dato LIKE "____-02-__" ORDER BY varenummer ASC;
+
+
+Del II
+
+a) SELECT total, date FROM (SELECT SUM(subtotal) as total, date FROM (SELECT Ordre.dato as date, (Produkt.pris*Ordre.antall) AS subtotal FROM Ordre JOIN Produkt ON (Produkt.varenummer = Ordre.varenummer)) as q GROUP BY date) as q WHERE total>=10000;
+
+b) SELECT total, antall, varenummer, navn FROM (SELECT Produkt.varenummer, Produkt.navn, Produkt.pris, (Produkt.pris*Ordre.antall) as total, Ordre.antall FROM Ordre JOIN Produkt ON (Ordre.varenummer = Produkt.varenummer) GROUP BY Produkt.varenummer) as q ORDER BY total DESC;
+
+c) SELECT poststedNavn FROM poststed JOIN kommuner ON (poststed.kommuneID = kommuner.kommuneID) JOIN fylker ON (fylker.fylkeID = kommuner.fylkeID) WHERE fylker.fylkenavn = "Oppland" ORDER BY poststedNavn;
+
+d) SELECT ePost, kommuner.kommuneNavn FROM Kunde JOIN postnumre ON (Kunde.postnummer = postnumre.postnummer) JOIN poststed ON (poststed.poststedID = postnumre.poststedID) JOIN kommuner ON (poststed.kommuneID = kommuner.kommuneID) WHERE kommuneNavn IN ("Gjøvik", "Gran", "Vestre Toten", "Østre Toten");
+
+e) SELECT * FROM Kunde WHERE Kunde.kundeID NOT IN (SELECT Kunde.kundeID FROM Kunde JOIN Ordre ON (Ordre.kundeID = Kunde.kundeID));
+
+f) SELECT date, subtotal as total FROM (SELECT Ordre.dato as date, Produkt.pris*Ordre.antall as subtotal FROM Ordre JOIN Produkt ON (Produkt.varenummer = Ordre.varenummer) GROUP BY date) as q ORDER BY subtotal DESC LIMIT 0,5;
+
+
+Del III
+
+a) INSERT INTO Kunde (fornavn, etternavn, ePost, postnummer) VALUES ("Victor", "Rudolfsson", "victor.rudolfsson@hig.no", 2818);
+
+b) UPDATE Kunde set ePost = "sintpanda@gmail.com" WHERE ePost = "victor.rudolfsson@hig.no";
+
+c) DELETE FROM Kunde WHERE ePost = "sintpanda@gmail.com";
+
+
+
+
